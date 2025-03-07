@@ -21,7 +21,6 @@ for /f "usebackq delims=" %%L in (`ipconfig`) do (
             :: 「イーサネット アダプター イーサネット:」形式なので、3番目のトークンを取得
             for /f "tokens=3 delims= " %%A in ("!line!") do (
                 set "adapterName=%%A"
-                :: 末尾のコロンを除去
                 set "adapterName=!adapterName::=!"
             )
             set "hasIPv6=0"
