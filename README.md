@@ -1,7 +1,7 @@
 # toggleIPv6
 iwaSync3 等のプレイヤーが再生されない人かつ設定がわからない人向けにIPv6を一時的に無効化するアプリを作成しました
 
-
+## 使い方
 CODEクリックした後にダウンロードZIPよりダウンロード
 
 ![image](https://github.com/user-attachments/assets/3c0f6d4d-a24c-41ac-9603-758a7d54b201)
