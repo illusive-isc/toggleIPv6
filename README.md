@@ -21,7 +21,7 @@ CODEクリックした後にダウンロードZIPよりダウンロード
 
 ![image](https://github.com/user-attachments/assets/a5a81a84-5f37-43c7-a1a2-99e36c4e30d5)
 
-この状態でVRCを起動！！
+### この状態でVRCを起動！！
 
 
 
