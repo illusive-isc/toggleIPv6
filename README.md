@@ -26,3 +26,11 @@ CODEクリックした後にダウンロードZIPよりダウンロード
 また、「続行するには何かキーを押してください...」の通りに何かキー入力することでIPｖ６の状態に戻すことができます
 
 ![image](https://github.com/user-attachments/assets/513c2bd0-a281-48f4-84b3-20ea1de961a3)
+
+
+## アプリの動作内容について
+
+イーサネットのプロパティのインターネットプロトコルバージョン 6（TCP/IPｖ6）の部分を一時的に無効化するものになります
+
+![image](https://github.com/user-attachments/assets/aea5c4b2-553d-4b50-a0ff-f0ca1f8c8436)
+
