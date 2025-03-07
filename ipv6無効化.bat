@@ -1,28 +1,27 @@
 @echo off
-:: ŠÇ—ÒŒ ŒÀ‚Ìƒ`ƒFƒbƒN
+:: ç®¡ç†è€…æ¨©é™ã®ãƒã‚§ãƒƒã‚¯
 net session >nul 2>&1
 if %errorLevel% neq 0 (
-    echo ŠÇ—ÒŒ ŒÀ‚ª•K—v‚Å‚·BŠÇ—ÒŒ ŒÀ‚ÅÄÀs‚µ‚Ä‚¢‚Ü‚·...
+    echo ç®¡ç†è€…æ¨©é™ãŒå¿…è¦ã§ã™ã€‚ç®¡ç†è€…æ¨©é™ã§å†å®Ÿè¡Œã—ã¦ã„ã¾ã™...
     powershell -Command "Start-Process '%~f0' -Verb RunAs"
     exit /b
 )
 
 setlocal enabledelayedexpansion
 
-:: ipconfig ‚Ìo—Í‚©‚çAIPv6 ƒAƒhƒŒƒX‚ğ‚ÂƒC[ƒTƒlƒbƒg ƒAƒ_ƒvƒ^[‚Ì–¼‘O‚ğ’Šo
+:: ipconfig ã®å‡ºåŠ›ã‹ã‚‰ã€IPv6 ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒã¤ã‚¤ãƒ¼ã‚µãƒãƒƒãƒˆ ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ã®åå‰ã‚’æŠ½å‡º
 set "adapterName="
 set "hasIPv6="
 
 for /f "usebackq delims=" %%L in (`ipconfig`) do (
     set "line=%%L"
-    :: ƒwƒbƒ_[siæ“ª‚ª‹ó”’‚Å‚È‚¢sj‚ğƒ`ƒFƒbƒN
     if not "!line:~0,1!"==" " (
-        echo !line! | find "ƒC[ƒTƒlƒbƒg ƒAƒ_ƒvƒ^[" >nul
+        echo !line! | find "ã‚¤ãƒ¼ã‚µãƒãƒƒãƒˆ ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼" >nul
         if not errorlevel 1 (
-            :: uƒC[ƒTƒlƒbƒg ƒAƒ_ƒvƒ^[ ƒC[ƒTƒlƒbƒg:vŒ`®‚È‚Ì‚ÅA3”Ô–Ú‚Ìƒg[ƒNƒ“‚ğæ“¾
+            :: ã€Œã‚¤ãƒ¼ã‚µãƒãƒƒãƒˆ ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ ã‚¤ãƒ¼ã‚µãƒãƒƒãƒˆ:ã€å½¢å¼ãªã®ã§ã€3ç•ªç›®ã®ãƒˆãƒ¼ã‚¯ãƒ³ã‚’å–å¾—
             for /f "tokens=3 delims= " %%A in ("!line!") do (
                 set "adapterName=%%A"
-                :: ––”ö‚ÌƒRƒƒ“‚ğœ‹
+                :: æœ«å°¾ã®ã‚³ãƒ­ãƒ³ã‚’é™¤å»
                 set "adapterName=!adapterName::=!"
             )
             set "hasIPv6=0"
@@ -30,8 +29,7 @@ for /f "usebackq delims=" %%L in (`ipconfig`) do (
             set "adapterName="
         )
     ) else (
-        :: Ú×siæ“ª‚É‹ó”’‚ª‚ ‚ésj‚Ì’†‚ÅuIPv6 ƒAƒhƒŒƒXv‚ğŒŸo
-        echo !line! | find "IPv6 ƒAƒhƒŒƒX" >nul
+        echo !line! | find "IPv6 ã‚¢ãƒ‰ãƒ¬ã‚¹" >nul
         if not errorlevel 1 (
             set "hasIPv6=1"
         )
@@ -40,15 +38,14 @@ for /f "usebackq delims=" %%L in (`ipconfig`) do (
         goto :foundAdapter
     )
 )
-:foundAdapter
 if not defined adapterName (
-    echo IPv6 ƒAƒhƒŒƒX‚ğ‚ÂƒAƒ_ƒvƒ^[‚ªŒ©‚Â‚©‚è‚Ü‚¹‚ñ‚Å‚µ‚½B
+    echo IPv6 ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’æŒã¤ã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼ãŒè¦‹ã¤ã‹ã‚Šã¾ã›ã‚“ã§ã—ãŸã€‚
     pause
     exit /b
 )
 echo Found adapter: %adapterName%
 
-:: PowerShell ‚ğ—˜—p‚µ‚ÄA’Šo‚µ‚½ƒAƒ_ƒvƒ^[–¼‚Å IPv6 ‚ğˆê“I‚É–³Œø‰»^Ä—LŒø‰»‚·‚é
-powershell -NoProfile -Command "try { Disable-NetAdapterBinding -Name '%adapterName%' -ComponentID ms_tcpip6; Write-Host 'IPv6 ‚ª–³Œø‰»‚³‚ê‚Ü‚µ‚½B'; Write-Host '‘±s‚·‚é‚É‚Í‰½‚©ƒL[‚ğ‰Ÿ‚µ‚Ä‚­‚¾‚³‚¢...'; $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown') } finally { Enable-NetAdapterBinding -Name '%adapterName%' -ComponentID ms_tcpip6; Write-Host 'IPv6 ‚ª—LŒø‰»‚³‚ê‚Ü‚µ‚½B' }"
+:: PowerShell ã‚’åˆ©ç”¨ã—ã¦ã€æŠ½å‡ºã—ãŸã‚¢ãƒ€ãƒ—ã‚¿ãƒ¼åã§ IPv6 ã‚’ä¸€æ™‚çš„ã«ç„¡åŠ¹åŒ–ï¼å†æœ‰åŠ¹åŒ–ã™ã‚‹
+powershell -NoProfile -Command "try { Disable-NetAdapterBinding -Name '%adapterName%' -ComponentID ms_tcpip6; Write-Host 'IPv6 ãŒç„¡åŠ¹åŒ–ã•ã‚Œã¾ã—ãŸã€‚'; Write-Host 'ç¶šè¡Œã™ã‚‹ã«ã¯ä½•ã‹ã‚­ãƒ¼ã‚’æŠ¼ã—ã¦ãã ã•ã„...'; $null = $Host.UI.RawUI.ReadKey('NoEcho,IncludeKeyDown') } finally { Enable-NetAdapterBinding -Name '%adapterName%' -ComponentID ms_tcpip6; Write-Host 'IPv6 ãŒæœ‰åŠ¹åŒ–ã•ã‚Œã¾ã—ãŸã€‚' }"
 
 pause
