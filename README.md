@@ -21,11 +21,13 @@ CODEクリックした後にダウンロードZIPよりダウンロード
 
 ![image](https://github.com/user-attachments/assets/a5a81a84-5f37-43c7-a1a2-99e36c4e30d5)
 
+この状態でVRCを起動！！
 
 
 また、「続行するには何かキーを押してください...」の通りに何かキー入力することでIPｖ６の状態に戻すことができます
 
 ![image](https://github.com/user-attachments/assets/513c2bd0-a281-48f4-84b3-20ea1de961a3)
+
 
 
 ## アプリの動作内容について
